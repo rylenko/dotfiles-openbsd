@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Usage: `log <message>`.
+log() {
+	herbe-bg \
+		"System cleaner" \
+		"--------------" \
+		"$1"
+}
+
+# Usage: `fail <reason>`.
+fail() {
+	herbe-bg \
+		"System cleaner" \
+		"--------------" \
+		"Fail: $1."
+	exit 1
+}
+
+# Are you sure?
+sure=$(
+	printf "No\\nYes" \
+	| dmenu -b -i -p "Are you sure you want to clean the system?"
+)
+[ "$sure" != "Yes" ] && exit 0
+
+log "Updating packages..."
+doas pkg_add -Uuc || fail "pkg_add"
+
+log "Removing orphans..."
+doas pkg_delete -ac || fail "pkg_delete"
+
+log "Patching and merging..."
+doas syspatch || fail "syspatch"
+doas sysmerge || fail "sysmerge"
+
+# Clean programs cache and temporary files
+log "Cleaning logs and cache..."
+tmux kill-server || fail "kill tmux server"
+rm -rf "${HOME}/.w3m/w3mtmp*" || fail "clean w3m"
+doas rm -rf /var/log/Xorg* || fail "clean Xorg logs"
+doas rm -rf /var/mail/"${USER}" || fail "remove mails"
+doas rm -rf /var/log/maillog* || fail "clean mail logs"
+
+log "Success."

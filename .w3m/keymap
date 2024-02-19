@@ -1,0 +1,56 @@
+# Words
+keymap w NEXT_WORD
+keymap b PREV_WORD
+
+# Navigate
+keymap F NEXT
+keymap B PREV
+
+# Links
+keymap S-Tab PREV_LINK
+keymap Tab NEXT_LINK
+
+# Line
+keymap 0 LINE_BEGIN
+keymap A LINE_END
+
+# Images
+keymap i VIEW_IMAGE
+keymap I SAVE_IMAGE
+
+# History
+keymap H HISTORY
+
+# Downloads
+keymap D DOWNLOAD_LIST
+
+# Edit link
+keymap C-u GOTO
+
+# Edit page
+keymap e EDIT_SCREEN
+keymap E EDIT
+
+# Save
+keymap s SAVE_SCREEN
+keymap S SAVE
+
+# Reload
+keymap r RELOAD
+
+# Tabs
+keymap C-t TAB_MENU
+keymap T NEW_TAB
+keymap Q CLOSE_TAB
+
+# Bookmarks
+keymap m BOOKMARK
+keymap M ADD_BOOKMARK
+
+# Copy links
+keymap y EXTERN "url=%s ; printf "%b" "${url}" | xsel -b"
+keymap Y EXTERN_LINK "url=%s ; printf "%b" "${url}" | xsel -b"
+
+# Handle link
+keymap u EXTERN
+keymap U EXTERN_LINK

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+class=$(xprop | grep CLASS | awk '{print $4}') \
+	&& status="Success: $class." \
+	|| status="Fail."
+herbe-bg \
+	"Application class getter" \
+	"------------------------" \
+	"$status"

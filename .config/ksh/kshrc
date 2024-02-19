@@ -1,0 +1,85 @@
+#!/bin/sh
+
+# To get last executed command with "Up" arrow
+# shellcheck disable=SC3040
+set -o emacs
+HISTFILE="${HOME}/.cache/history"
+
+# Colors
+# shellcheck disable=SC2034
+RED="\033[31m"
+BLUE="\033[34m"
+END="\033[0m"
+
+cd() {
+	# shellcheck disable=SC2164
+	command cd "$@"
+	update_ps1
+}
+
+git() {
+	command git "$@"
+	update_ps1
+}
+
+rm() {
+	command rm "$@"
+	update_ps1
+}
+
+update_ps1() {
+	uid=$(id -u)
+	git_branch=$(
+		command git branch 2>/dev/null \
+			| grep "^\*" \
+			| awk '{printf "${RED}(%s)${END} ", $2}' \
+	)
+	if [ "${uid}" -eq 0 ]; then
+		uhcolor="${RED}"
+	else
+	 	uhcolor="${BLUE}"
+	fi
+	PS1="${uhcolor}\u@\h${END} \W ${git_branch}$ "
+}
+
+# To sign git commits
+export GPG_TTY="$(tty)"
+
+# Movement
+alias ..="cd .."
+# Files
+alias \
+	ch="doas chown -R \${USER}" \
+	cp="cp -iv" \
+	ls="colorls -hFGH" \
+	mkdir="mkdir -p" \
+	mv="mv -iv" \
+	rm="rm -iv"
+# Packages
+alias \
+	pa="doas pkg_add" \
+	pd="doas pkg_delete" \
+	pi="pkg_info"
+# System operations
+alias \
+	dl="doas disklabel -h" \
+	dns="sysctl hw.disknames" \
+	k="doas kill -9"
+# Programs
+alias \
+	f="find . 2>/dev/null | fzf" \
+	m="mupdf -I" \
+	n="nsxiv" \
+	trem="transmission-remote" \
+	v="vise"
+# Requests
+alias \
+	getip="curl ident.me"
+# X
+alias \
+	monitors="xrandr --query | grep connected"
+# Linters
+alias c="cargo clippy --workspace"
+alias sc="shellcheck -o all -x"
+
+update_ps1

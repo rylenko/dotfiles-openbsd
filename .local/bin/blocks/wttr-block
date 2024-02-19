@@ -1,0 +1,9 @@
+#!/bin/sh
+
+fail() {
+	echo "🌡$No weather" && exit 0
+}
+
+response=$(curl -sf -m 2 --connect-timeout 2 "$WTTR_URL") || fail
+[ -z "$response" ] && fail
+echo "🌡$response"

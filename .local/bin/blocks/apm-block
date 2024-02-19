@@ -1,0 +1,16 @@
+#!/bin/sh
+
+level=$(apm -l)
+case $(apm -a) in
+	0)
+		if [ "$level" -le "$BAT_LOW_LEVEL_FROM" ]; then
+			emoji="❗"
+		else
+			emoji="🔋"
+		fi
+		;;
+	1) emoji="🔌" ;;
+	2) emoji="🔙" ;;
+	*) emoji="🆔" ;;
+esac
+echo "$emoji $level%"

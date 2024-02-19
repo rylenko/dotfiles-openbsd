@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Usage: `autostart <program> <args>`
+autostart() {
+	program=$1
+	shift
+	pgrep -f "$program" 1>/dev/null || ${program} "$@" &
+}
+
+# Mute audio
+sndioctl output.level=0
+# Set wallpaper
+xwallpaper --zoom "$CUR_WP_PATH"
+# Set color temperature
+sct "$COLOR_TEMP"
+
+# Autostart programs
+#
+# Start blocks on dwm panel
+autostart dwmblocks
+# Run composite manager
+autostart xcompmgr
+# Run screen blocker
+autostart xidle \
+	-timeout "$XIDLE_TIMEOUT" \
+	-program "$XIDLE_PROG"

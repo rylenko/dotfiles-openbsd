@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Cron job to check battery level.
+
+# Do not move this variable to profile as cron won't see it.
+LOW_LEVEL_FROM=15
+
+level=$(apm -l)
+status=$(apm -b)
+[ "$level" -le "$LOW_LEVEL_FROM" ] && \
+	[ "$status" != "3" ] && \
+	/home/ocean/.local/bin/herbe-bg \
+		"Battery level checker" \
+		"---------------------" \
+		"Low battery level."

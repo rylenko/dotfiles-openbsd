@@ -1,0 +1,4 @@
+#!/bin/sh
+
+count=$(pkg_info | wc -l | xargs)
+echo "📦 $count"

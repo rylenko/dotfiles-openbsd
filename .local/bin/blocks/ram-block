@@ -1,0 +1,3 @@
+#!/bin/sh
+
+vmstat | awk 'END {printf "💿 %s", $3}'

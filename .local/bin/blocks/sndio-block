@@ -1,0 +1,17 @@
+#!/bin/sh
+
+level=$(sndioctl -n output.level | awk '{printf "%d", $1 * 100}')
+status="$level%"
+
+if [ "$level" -eq "0" ]; then
+	emoji="🔇"
+	status="muted"
+elif [ "$level" -le "33" ]; then
+	emoji="🔈"
+elif [ "$level" -le "66" ]; then
+	emoji="🔉"
+else
+	emoji="🔊"
+fi
+
+echo "$emoji $status"

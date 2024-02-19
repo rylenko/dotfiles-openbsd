@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Parts of `PATH`
+LOCAL_PATH="$HOME/.local/bin"
+BINS_PATH="$LOCAL_PATH:$LOCAL_PATH/blocks:/usr/bin:/usr/local/bin"
+X11_BINS_PATH="/usr/X11R6/bin"
+SBINS_PATH="/bin:/sbin:/usr/sbin:/usr/local/sbin"
+
+# System
+export \
+	LANG=en_US.UTF-8
+# Programs
+export \
+	BROWSER="w3m" \
+	EDITOR="vise" \
+	PAGER="less" \
+	TERM="st-256color"
+# System paths
+export \
+	ENV="$HOME/.config/ksh/kshrc" \
+	LESSHISTFILE="-" \
+	PATH="$BINS_PATH:$SBINS_PATH:$X11_BINS_PATH" \
+	WGETRC="$HOME/.config/wget/wgetrc" \
+	XDG_CONFIG_HOME="$HOME/.config"
+# Wallpapers
+export \
+	CUR_WP_PATH="$HOME/.local/share/wallpaper.jpg" \
+	WPS_DIR="$HOME/.local/share/wallpapers" \
+# X
+export \
+	XIDLE_PROG="/usr/local/bin/slock" \
+	XIDLE_TIMEOUT=600
+# w3m
+export \
+	WWW_HOME="https://searx.be/"
+# Color temperature
+export \
+	COLOR_TEMP=3700
+# sfeed
+export \
+	SFEED_HTMLCONV="w3m -O utf-8 -T text/html -o display_link_number=1" \
+	SFEED_PLUMBER="dmenu-handle-link" \
+	SFEED_URL_FILE="$HOME/.sfeed/urls"
+# Weather
+export \
+	WTTR_URL="https://wttr.in/?format=%t\n"

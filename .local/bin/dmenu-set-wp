@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Select wallpaper
+filenames=$(ls "$WPS_DIR")
+selected="$(echo "$filenames" | dmenu -b -i -p "Which wallpaper?")"
+{ [ -z "$selected" ] || [ -n "${filenames##*"${selected}"*}" ]; } && exit 1
+
+# Set wallpaper
+cp "$WPS_DIR/$selected" "$CUR_WP_PATH" \
+	&& xwallpaper --zoom "$CUR_WP_PATH" \
+	&& status="Success" \
+	|| status="Fail"
+herbe-bg \
+	"Wallpaper setter" \
+	"----------------" \
+	"$status: $selected."

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Do not move the `DISPLAY` variable outside of this file, as then we will not
+# receive cron's notifications
+DISPLAY=:0 herbe "$@" &

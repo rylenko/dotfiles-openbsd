@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Cron job to update feeds but can be called from DWM.
+
+/home/ocean/.local/bin/herbe-bg \
+	"Feeds updater" \
+	"-------------" \
+	"Updating..."
+if sfeed_update; then
+	pkill -SIGHUP sfeed_curses
+	/home/ocean/.local/bin/herbe-bg \
+		"Feeds updater" \
+		"-------------" \
+		"Success."
+else
+	/home/ocean/.local/bin/herbe-bg \
+		"Feeds updated" \
+		"-------------" \
+		"Fail."
+	exit 1
+fi

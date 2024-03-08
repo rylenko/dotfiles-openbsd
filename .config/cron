@@ -1,3 +1,3 @@
 * * * * * /home/ocean/.local/bin/check-bat-level
-*/5 * * * * /home/ocean/.local/bin/upd-feeds
+*/30 * * * * /home/ocean/.local/bin/upd-feeds
 

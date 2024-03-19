@@ -70,6 +70,7 @@ alias \
 	f="find . 2>/dev/null | fzf" \
 	m="mupdf -I" \
 	n="nsxiv" \
+	t="tmux -u" \
 	trem="transmission-remote" \
 	v="vise"
 # Requests

@@ -39,8 +39,9 @@ keymap S SAVE
 keymap r RELOAD
 
 # Tabs
-keymap C-t TAB_MENU
-keymap T NEW_TAB
+keymap t PREV_TAB
+keymap T NEXT_TAB
+keymap C-t NEW_TAB
 keymap Q CLOSE_TAB
 
 # Bookmarks

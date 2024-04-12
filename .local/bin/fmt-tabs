@@ -1,5 +1,5 @@
 #!/bin/sh
-# Usage: `format-tabs <path1>, ..., <pathN>`
+# Usage: `fmt-tabs <path1>, ..., <pathN>`
 
 for i in "$@"; do
 	if [ -d "$i" ]; then

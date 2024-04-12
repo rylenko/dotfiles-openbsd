@@ -1,4 +1,4 @@
 #!/bin/sh
-# Usage: `get-pkg-dependencies <name>`
+# Usage: `get-pkg-depends <name>`
 
 pkg_info -f "$1" | grep "@depend" | cut -f 3 -d ":" | less

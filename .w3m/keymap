@@ -25,7 +25,7 @@ keymap H HISTORY
 keymap D DOWNLOAD_LIST
 
 # Edit link
-keymap C-u GOTO
+keymap O GOTO
 
 # Edit page
 keymap e EDIT_SCREEN
